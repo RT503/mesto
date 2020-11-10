@@ -1,0 +1,4 @@
+.elements__list {
+  display: grid;
+  gap: 17px;
+}
