@@ -2,3 +2,10 @@
   display: flex;
   align-items: baseline;
 }
+
+@media screen and (max-width: 675px) {
+  .profile__row {
+    align-items: center;
+    margin-bottom: 14px;
+  }
+}

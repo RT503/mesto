@@ -1,6 +1,9 @@
 .card {
-  width: 100%;
   box-sizing: border-box;
   height: 361px;
-  color: aliceblue;
+  color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: aliceblue;
+  max-width: 280px;
 }
