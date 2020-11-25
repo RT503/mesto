@@ -6,6 +6,7 @@
   border: 2px solid white;
   align-self: center;
   border-radius: 1px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {
