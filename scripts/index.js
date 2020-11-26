@@ -20,6 +20,7 @@ function closePopup() {
 
 editButton.addEventListener('click', showPopup);
 popupCloseButton.addEventListener('click', closePopup);
+popupSubmitButton.addEventListener('click', formSubmitHandler);
 
 
 function formSubmitHandler(evt) {
