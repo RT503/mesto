@@ -1,17 +1,18 @@
-# Проект 4: Место
+## MESTO by RT503
 
-### Обзор
+## GitHub Pages:
 
-* Figma
-* Картинки
+### https://rt503.github.io/mesto/
 
-**Figma**
+### В данном проекте были использованы
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+* Html
+* Css
+* Навыки адаптивной верстки
+* Технологии выравнивания сетки
+* Flexbox
+* Grid layout
+* Git branching
+* JavaScript
 
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+~For sale~
