@@ -20,13 +20,14 @@ function closePopup() {
 
 editButton.addEventListener('click', showPopup);
 popupCloseButton.addEventListener('click', closePopup);
+
 popupSubmitButton.addEventListener('click', formSubmitHandler);
 
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
-  profileStatus = statusInput.value;
-  closePopup;
+  profileStatus.textContent = statusInput.value;
+  closePopup();
 }
 
