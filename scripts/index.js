@@ -11,6 +11,8 @@ let profileName = document.querySelector('.profile__name');
 let profileStatus = document.querySelector('.profile__status');
 
 function showPopup() {
+  nameInput.value = profileName.textContent;
+  statusInput.value = profileStatus.textContent;
   popup.classList.add('popup_opened');
 }
 
@@ -18,13 +20,12 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
-editButton.addEventListener('click', showPopup);
-popupCloseButton.addEventListener('click', closePopup);
-popupSubmitButton.addEventListener('click', formSubmitHandler);
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = statusInput.value;
-  closePopup();
 }
+
+editButton.addEventListener('click', showPopup);
+popupCloseButton.addEventListener('click', closePopup);
+popupSubmitButton.addEventListener('submit', formSubmitHandler);

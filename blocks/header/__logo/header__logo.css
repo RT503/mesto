@@ -1,5 +1,5 @@
 .header__logo {
-
+  padding-bottom: 41px;
 }
 
 @media screen and (max-width: 675px) {
@@ -7,5 +7,6 @@
     width: 104px;
     height: 25px;
     padding-left: 27px;
+    padding-bottom: 31px;
   }
 }

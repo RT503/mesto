@@ -19,7 +19,7 @@
             <div class="profile__text-block">
               <div class="profile__row">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button"></button>
+                <button type="button" class="profile__edit-button" ></button>
               </div>
               <p class="profile__status">Исследователь океана</p>
             </div>
@@ -32,42 +32,42 @@
               <img class="card__image" src="images/dombay.png" alt="Домбай.Горы.">
               <div class="card__bottom-section">
                 <h2 class="card__title">Домбай</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
               <img class="card__image" src="images/elbrus.png" alt="Гора Эльбрус">
               <div class="card__bottom-section">
                 <h2 class="card__title">Гора Эльбрус</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
               <img class="card__image" src="images/karachaevsk.png" alt="Карачаевск">
               <div class="card__bottom-section">
                 <h2 class="card__title">Карачаевск</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
-              <img class="card__image" src="images/Mont Saint-Michel.jpg" alt="Мон-Сен-Мишель">
+              <img class="card__image" src="images/Mont-Saint-Michel.jpg" alt="Мон-Сен-Мишель">
               <div class="card__bottom-section">
                 <h2 class="card__title">Мон-Сен-Мишель</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
               <img class="card__image" src="images/roma.jpg" alt="Рим">
               <div class="card__bottom-section">
                 <h2 class="card__title">Рим</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
               <img class="card__image" src="images/belgique.jpg" alt="Соединенны">
               <div class="card__bottom-section">
                 <h2 class="card__title">Бельгия</h2>
-                <button class="card__like-button"></button>
+                <button type="button" class="card__like-button"></button>
               </div>
             </li>
         </ul>
@@ -80,9 +80,9 @@
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="popup__form">
-            <input type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто" name="name">
-            <input type="text" class="popup__input popup__input_type_status" value="Исследователь океана" name="status">
+          <form class="popup__form" name="popup-edit-form">
+            <input type="text" class="popup__input popup__input_type_name" name="name">
+            <input type="text" class="popup__input popup__input_type_status" name="status">
             <button type="submit" class="popup__submit-button">Сохранить</button>
           </form>
         </div>

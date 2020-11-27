@@ -3,10 +3,10 @@
   height: 24px;
   background: transparent url(../../../images/edit-button.svg) center no-repeat;
   background-size: 24px 24px;
-  border: none;
   padding: 0;
   margin-left: 16px;
   cursor: pointer;
+  border: none;
 }
 
 .profile__edit-button:hover {
@@ -16,5 +16,8 @@
 @media screen and (max-width: 675px) {
   .profile__edit-button {
     margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
   }
 }
