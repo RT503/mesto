@@ -5,4 +5,5 @@
   overflow: hidden;
   background-color: aliceblue;
   max-width: 280px;
+  position: relative;
 }

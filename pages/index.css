@@ -33,3 +33,4 @@
 @import url("../blocks/popup/__submit-button/popup__submit-button.css");
 @import url("../blocks/popup-add-card/popup-add-card.css");
 @import url("../blocks/card/__like-button/_active/card__like-button_active.css");
+@import url("../blocks/card/__remove-button/card__remove-button.css");
