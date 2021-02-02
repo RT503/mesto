@@ -34,3 +34,6 @@
 @import url("../blocks/popup-add-card/popup-add-card.css");
 @import url("../blocks/card/__like-button/_active/card__like-button_active.css");
 @import url("../blocks/card/__remove-button/card__remove-button.css");
+@import url("../blocks/popup/__figure/popup__figure.css");
+@import url("../blocks/popup/__imagecaption/popup__imagecaption.css");
+@import url("../blocks/popup/__image/popup__image.css");
