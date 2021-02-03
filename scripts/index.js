@@ -119,8 +119,15 @@ function formAddCardSubmitHandler(evt) {
 
 
   cardElementAddedManualy.querySelector('.card__image').addEventListener('click', function(evt){
-    evt.target.parentElement.parentElement.classList.add('popup_opened');
-  })
+    showPopupZoomCard();
+    const cardName = evt.target.closest('.card').querySelector('.card__title');
+    const cardImage = evt.target.closest('.card__image');
+    popupImage.src = cardImage.src;
+    popupImage.alt = cardName.textContent;
+    popupZoomCardCaption.textContent = cardName.textContent;
+  });
+
+
   cardElementAddedManualy.querySelector('.card__like-button').addEventListener('click', function(evt){
     evt.target.classList.toggle('card__like-button_active');
   });
