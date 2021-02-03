@@ -1,6 +1,5 @@
-const popup = document.querySelector('.popup');
-const popupTitle = popup.querySelector('.popup__title');
-const popupCloseButton = popup.querySelector('.popup__close');
+const popupEditProfileInfo = document.querySelector('.popup');
+const popupCloseButton = popupEditProfileInfo.querySelector('.popup__close');
 
 const popupZoomCard = document.querySelector('.popup_type_view-image');
 const popupZoomCardClose = popupZoomCard.querySelector('.popup__close_view-image');
@@ -9,9 +8,9 @@ const popupZoomCardCaption = popupZoomCard.querySelector('.popup__imagecaption')
 const popupZoomCardCloseButton = popupZoomCard.querySelector('.popup__close_view-image');
 
 const editButton = document.querySelector('.profile__edit-button');
-const form = popup.querySelector('.popup__form');
-const nameInput = popup.querySelector('.popup__input_type_name');
-const statusInput = popup.querySelector('.popup__input_type_status');
+const form = popupEditProfileInfo.querySelector('.popup__form');
+const nameInput = popupEditProfileInfo.querySelector('.popup__input_type_name');
+const statusInput = popupEditProfileInfo.querySelector('.popup__input_type_status');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
 const elementsList = document.querySelector('.elements__list');
@@ -27,8 +26,6 @@ const formAddCard = popupAddCard.querySelector('.popup__form');
 const cardNameInput = popupAddCard.querySelector('.popup__input_type_name');
 const cardLinkInput = popupAddCard.querySelector('.popup__input_type_picture-link');
 
-
-const buttonRemoveCard = document.querySelector('.card__remove-button');
 
 const initialCards = [
   {
@@ -68,7 +65,6 @@ initialCards.forEach(function(card) {
   cardElement.querySelector('.card__image').addEventListener('click', function(evt){
     showPopupZoomCard();
     const cardName = evt.target.closest('.card').querySelector('.card__title');
-    const cardImage = evt.target.closest('.card__image');
     popupImage.src = cardImage.src;
     popupImage.alt = cardName.textContent;
     popupZoomCardCaption.textContent = cardName.textContent;
@@ -92,21 +88,21 @@ initialCards.forEach(function(card) {
 /** Попап Редактирование информации */
 
 
-function showPopup() {
+function showPopupEditProfileInfo() {
   nameInput.value = profileName.textContent;
   statusInput.value = profileStatus.textContent;
-  popup.classList.add('popup_opened');
+  popupEditProfileInfo.classList.add('popup_opened');
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+function closePopupEditProfileInfo() {
+  popupEditProfileInfo.classList.remove('popup_opened');
 }
 
-function formSubmitHandler(evt) {
+function handlePopupEditProfileInfoSubmitButton(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = statusInput.value;
-  closePopup();
+  closePopupEditProfileInfo();
 }
 
 /**Попап добавления новой карточки */
@@ -165,9 +161,9 @@ function closePopupZoomCard() {
 
 
 
-editButton.addEventListener('click', showPopup);
-popupCloseButton.addEventListener('click', closePopup);
-form.addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', showPopupEditProfileInfo);
+popupCloseButton.addEventListener('click', closePopupEditProfileInfo);
+form.addEventListener('submit', handlePopupEditProfileInfoSubmitButton);
 
 addButton.addEventListener('click', showPopupAddCard);
 popupAddCardCloseButton.addEventListener('click', closePopupAddCard);
