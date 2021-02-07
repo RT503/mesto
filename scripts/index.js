@@ -49,10 +49,12 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByKey);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByKey);
 }
 
 function toggleLike(evt) {
@@ -81,7 +83,6 @@ function getCardElement(link, name) {
 initialCards.forEach(function(card) {
   const newCard = getCardElement(card.link, card.name);
   elementsList.append(newCard);
-
 })
 
 function showPopupEditProfileInfo() {
@@ -116,8 +117,6 @@ function closePopupAddCard() {
   closePopup(popupAddCard);
 }
 
-/**Попап увеличения карточки*/
-
 function showPopupZoomCard(evt) {
   const cardName = evt.target.closest('.card').querySelector('.card__title');
   const cardImage = evt.target.closest('.card__image');
@@ -138,3 +137,19 @@ addButton.addEventListener('click', showPopupAddCard);
 popupAddCardCloseButton.addEventListener('click', closePopupAddCard);
 formAddCard.addEventListener('submit', addNewCardFromForm);
 popupZoomCardCloseButton.addEventListener('click', closePopupZoomCard);
+popupEditProfileInfo.addEventListener('mousedown', closePopupByClick);
+popupAddCard.addEventListener('mousedown', closePopupByClick);
+
+function closePopupByKey(evt) {
+  if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  }
+}
+
+function closePopupByClick(evt) {
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.target === evt.currentTarget) {
+    closePopup(activePopup);
+  }
+}

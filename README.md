@@ -8,11 +8,13 @@
 
 * Html
 * Css
-* Навыки адаптивной верстки
-* Технологии выравнивания сетки
+* Adaptive grid CSS
 * Flexbox
 * Grid layout
 * Git branching
 * JavaScript
+* --Funcitons
+* --Variables
+* --Form Validation techniques
 
 ~For sale~
