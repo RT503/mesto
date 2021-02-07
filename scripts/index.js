@@ -20,33 +20,6 @@ const formAddCard = popupAddCard.querySelector('.popup__form');
 const cardNameInput = popupAddCard.querySelector('.popup__input_type_name');
 const cardLinkInput = popupAddCard.querySelector('.popup__input_type_picture-link');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByKey);
@@ -91,10 +64,6 @@ function showPopupEditProfileInfo() {
   openPopup(popupEditProfileInfo);
 }
 
-function closePopupEditProfileInfo() {
-  closePopup(popupEditProfileInfo);
-}
-
 function handlePopupEditProfileInfoSubmitButton(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -104,16 +73,8 @@ function handlePopupEditProfileInfoSubmitButton(evt) {
 
 function addNewCardFromForm(evt) {
   evt.preventDefault();
-  let cardElementAddedManually = getCardElement(cardLinkInput.value, cardNameInput.value);
+  const cardElementAddedManually = getCardElement(cardLinkInput.value, cardNameInput.value);
   elementsList.prepend(cardElementAddedManually);
-  closePopup(popupAddCard);
-}
-
-function showPopupAddCard() {
-  openPopup(popupAddCard);
-}
-
-function closePopupAddCard() {
   closePopup(popupAddCard);
 }
 
@@ -126,17 +87,13 @@ function showPopupZoomCard(evt) {
   openPopup(popupZoomCard);
 }
 
-function closePopupZoomCard() {
-  closePopup(popupZoomCard);
-}
-
 editButton.addEventListener('click', showPopupEditProfileInfo);
-popupCloseButton.addEventListener('click', closePopupEditProfileInfo);
+popupCloseButton.addEventListener('click', () => closePopup(popupEditProfileInfo));
 form.addEventListener('submit', handlePopupEditProfileInfoSubmitButton);
-addButton.addEventListener('click', showPopupAddCard);
-popupAddCardCloseButton.addEventListener('click', closePopupAddCard);
+addButton.addEventListener('click', () => openPopup(popupAddCard));
+popupAddCardCloseButton.addEventListener('click', () => closePopup(popupAddCard));
 formAddCard.addEventListener('submit', addNewCardFromForm);
-popupZoomCardCloseButton.addEventListener('click', closePopupZoomCard);
+popupZoomCardCloseButton.addEventListener('click', () => closePopup(popupZoomCard));
 popupEditProfileInfo.addEventListener('mousedown', closePopupByClick);
 popupAddCard.addEventListener('mousedown', closePopupByClick);
 popupZoomCard.addEventListener('mousedown', closePopupByClick);
