@@ -139,6 +139,7 @@ formAddCard.addEventListener('submit', addNewCardFromForm);
 popupZoomCardCloseButton.addEventListener('click', closePopupZoomCard);
 popupEditProfileInfo.addEventListener('mousedown', closePopupByClick);
 popupAddCard.addEventListener('mousedown', closePopupByClick);
+popupZoomCard.addEventListener('mousedown', closePopupByClick);
 
 function closePopupByKey(evt) {
   if (evt.key === 'Escape') {
