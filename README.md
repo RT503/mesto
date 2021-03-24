@@ -16,5 +16,7 @@
 * --Funcitons
 * --Variables
 * --Form Validation techniques
+* --Classes
+* 
 
 ~For sale~
