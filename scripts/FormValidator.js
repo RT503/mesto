@@ -14,14 +14,16 @@ export default class FormValidator {
         evt.preventDefault();
       };
       formElement.addEventListener("submit", handleFormSubmit);
+
       const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
       const buttonElement = formElement.querySelector(this._buttonElement);
+
       const inputListIterator = (inputElement) => {
         const handleInput = () => {
           this._checkInputValidity(formElement, inputElement);
           this._toggleButtonState(inputList, buttonElement);
         };
-        inputElement.addEventListener("input", handleInput);
+        inputElement.addEventListener('input', handleInput);
       };
       inputList.forEach(inputListIterator);
       this._toggleButtonState(inputList, buttonElement);
@@ -36,6 +38,7 @@ export default class FormValidator {
 
   _hideInputError (inputElement) {
     const errorElement = document.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
     errorElement.classList.remove(this._errorClass);
   };

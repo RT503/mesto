@@ -1,3 +1,5 @@
+import { openPopup } from './index.js';
+
 export default class Card {
   constructor(data, cardSelector) {
     this._link = data.link;
@@ -37,10 +39,13 @@ export default class Card {
 
   _like() {
     this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active');
+
   }
+
   _deleteCard() {
     this._element.querySelector('.card__remove-button').parentElement.remove();
   }
+
   _handleCardClick() {
     const popupZoomCard = document.querySelector('.popup_type_view-image');
     const popupImage = popupZoomCard.querySelector('.popup__image');
@@ -49,8 +54,8 @@ export default class Card {
     const popupImageAlt = this._element.querySelector('.card__image').alt;
     popupImage.src = popupImageSrc;
     popupZoomCardCaption.textContent = popupImageAlt;
-    popupZoomCard.classList.add('popup_opened');
+    openPopup(popupZoomCard);
   }
-}
 
+}
 
