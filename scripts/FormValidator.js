@@ -73,4 +73,21 @@ export default class FormValidator {
     this._setEventListeners(formElement);
    };
 
+   resetValidation() {
+
+    const inputs = document.querySelectorAll(this._inputSelector);
+    const errors = document.querySelectorAll(this._errorSelector);
+    const buttons = document.querySelectorAll(this._buttonElement);
+    inputs.forEach((input) => {
+      input.classList.remove('popup__input_type_error');
+    })
+    errors.forEach((error) => {
+      error.classList.remove('popup__input-error_visible');
+    })
+    buttons.forEach((button) => {
+      button.classList.add('popup__submit-button_disabled');
+    })
+  }
 }
+
+

@@ -19,9 +19,10 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    this._cardImage = this._element.querySelector('.card__image');
     this._element.querySelector('.card__title').textContent = this._title;
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
     return this._element;
   }
 
@@ -47,14 +48,24 @@ export default class Card {
   }
 
   _handleCardClick() {
+    /*
     const popupZoomCard = document.querySelector('.popup_type_view-image');
     const popupImage = popupZoomCard.querySelector('.popup__image');
     const popupZoomCardCaption = popupZoomCard.querySelector('.popup__imagecaption');
-    const popupImageSrc = this._element.querySelector('.card__image').src;
-    const popupImageAlt = this._element.querySelector('.card__image').alt;
-    popupImage.src = popupImageSrc;
+    */
+
+    this._cardImage = this._element.querySelector('.card__image');
+    console.log(this._cardImage.src);
+    console.log(this._popupZoomCard);
+
+/*
+    const popupImageSrc = this._cardImage.src;
+    const popupImageAlt = this._cardImage.alt;
+    this._popupImage.src = popupImageSrc;
     popupZoomCardCaption.textContent = popupImageAlt;
     openPopup(popupZoomCard);
+*/
+
   }
 
 }
