@@ -1,5 +1,5 @@
 export default class FormValidator {
-  constructor (selectors, formElement) {
+  constructor (selectors, formElement, popupOpener) {
       this._formSelector = selectors.formSelector;
       this._inputSelector = selectors.inputSelector;
       this._buttonElement = selectors.buttonElement;
@@ -7,15 +7,18 @@ export default class FormValidator {
       this._inputErrorClass = selectors.inputErrorClass;
       this._errorClass = selectors.errorClass;
       this._formElement = formElement;
+      this._popupOpener = popupOpener;
+      this._errorSelector = selectors.errorSelector;
   }
 
-  _setEventListeners(formElement) {
+  _setEventListeners(formElement, popupOpener) {
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
       };
       formElement.addEventListener("submit", handleFormSubmit);
 
       const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
+      const errorsList = Array.from(formElement.querySelectorAll(this._errorSelector));
       const buttonElement = formElement.querySelector(this._buttonElement);
 
       const inputListIterator = (inputElement) => {
@@ -23,7 +26,23 @@ export default class FormValidator {
           this._checkInputValidity(formElement, inputElement);
           this._toggleButtonState(inputList, buttonElement);
         };
+
+      const resetValidation = () => {
+        formElement.reset();
+        buttonElement.classList.add(this._inactiveButtonClass);
+        buttonElement.disabled = true;
+
+        errorsList.forEach((error) => {
+          error.classList.remove(this._errorClass)});
+
+        inputList.forEach((input) => {
+            input.classList.remove(this._inputErrorClass)});
+      }
+
+
+        popupOpener.addEventListener('click', resetValidation);
         inputElement.addEventListener('input', handleInput);
+
       };
       inputList.forEach(inputListIterator);
       this._toggleButtonState(inputList, buttonElement);
@@ -70,24 +89,9 @@ export default class FormValidator {
 
   enableValidation() {
     const formElement = document.querySelector(this._formElement);
-    this._setEventListeners(formElement);
+    const popupOpener = document.querySelector(this._popupOpener);
+    this._setEventListeners(formElement, popupOpener);
+
    };
 
-   resetValidation() {
-
-    const inputs = document.querySelectorAll(this._inputSelector);
-    const errors = document.querySelectorAll(this._errorSelector);
-    const buttons = document.querySelectorAll(this._buttonElement);
-    inputs.forEach((input) => {
-      input.classList.remove('popup__input_type_error');
-    })
-    errors.forEach((error) => {
-      error.classList.remove('popup__input-error_visible');
-    })
-    buttons.forEach((button) => {
-      button.classList.add('popup__submit-button_disabled');
-    })
-  }
 }
-
-

@@ -1,15 +1,12 @@
-import { openPopup } from './index.js';
-
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardTemplate) {
     this._link = data.link;
     this._title = data.name;
-    this._cardSelector = cardSelector;
+    this._cardTemplate = cardTemplate;
   }
 
   _getTemplate() {
-    const elementTemplate = document
-    .querySelector(this._cardSelector)
+    const elementTemplate = this._cardTemplate
     .content
     .querySelector('.card')
     .cloneNode(true)
@@ -18,8 +15,9 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
     this._cardImage = this._element.querySelector('.card__image');
+    this._setEventListeners();
+
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
@@ -48,25 +46,14 @@ export default class Card {
   }
 
   _handleCardClick() {
-    /*
     const popupZoomCard = document.querySelector('.popup_type_view-image');
     const popupImage = popupZoomCard.querySelector('.popup__image');
     const popupZoomCardCaption = popupZoomCard.querySelector('.popup__imagecaption');
-    */
-
-    this._cardImage = this._element.querySelector('.card__image');
-    console.log(this._cardImage.src);
-    console.log(this._popupZoomCard);
-
-/*
     const popupImageSrc = this._cardImage.src;
     const popupImageAlt = this._cardImage.alt;
-    this._popupImage.src = popupImageSrc;
+    popupImage.src = popupImageSrc;
     popupZoomCardCaption.textContent = popupImageAlt;
-    openPopup(popupZoomCard);
-*/
-
+    popupZoomCard.classList.add('popup_opened');
   }
-
 }
 
