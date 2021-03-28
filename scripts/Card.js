@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(data, cardTemplate) {
+  constructor(data, cardTemplate, handleCardClick) {
     this._link = data.link;
     this._title = data.name;
     this._cardTemplate = cardTemplate;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -31,8 +32,8 @@ export default class Card {
     this._element.querySelector('.card__remove-button').addEventListener('click', () => {
       this._deleteCard();
     });
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleCardClick();
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._title, this._link);
     });
   }
 
@@ -45,15 +46,6 @@ export default class Card {
     this._element.querySelector('.card__remove-button').parentElement.remove();
   }
 
-  _handleCardClick() {
-    const popupZoomCard = document.querySelector('.popup_type_view-image');
-    const popupImage = popupZoomCard.querySelector('.popup__image');
-    const popupZoomCardCaption = popupZoomCard.querySelector('.popup__imagecaption');
-    const popupImageSrc = this._cardImage.src;
-    const popupImageAlt = this._cardImage.alt;
-    popupImage.src = popupImageSrc;
-    popupZoomCardCaption.textContent = popupImageAlt;
-    popupZoomCard.classList.add('popup_opened');
-  }
+
 }
 

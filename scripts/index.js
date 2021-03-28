@@ -10,9 +10,15 @@ const statusInput = popupEditProfileInfo.querySelector('.popup__input_type_statu
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
 const editButton = document.querySelector('.profile__edit-button');
-
 const popupZoomCard = document.querySelector('.popup_type_view-image');
+
+
 const popupZoomCardCloseButton = popupZoomCard.querySelector('.popup__close_view-image');
+
+const popupImage = popupZoomCard.querySelector('.popup__image');
+const popupZoomCardCaption = popupZoomCard.querySelector('.popup__imagecaption');
+
+
 
 const popupAddCard = document.querySelector('.popup_type_add-new-card');
 const addButton = document.querySelector('.profile__add-button');
@@ -38,15 +44,13 @@ const validateSelectors = {
 }
 
 initialCards.forEach((item) => {
-   const card = new Card(item, cardTemplate);
-   const cardElement = card.generateCard();
+   const cardElement = createCard(item);
    elementsList.append(cardElement);
 });
 
 function addNewCardFromForm(evt) {
   evt.preventDefault();
-  const card = new Card({name: cardNameInput.value, link: cardLinkInput.value}, cardTemplate);
-  const elementItem = card.generateCard();
+  const elementItem = createCard({name: cardNameInput.value, link: cardLinkInput.value}, cardTemplate, handleCardClick);
   elementsList.prepend(elementItem);
   closePopup(popupAddCard);
   cardNameInput.value = '';
@@ -89,6 +93,19 @@ function closePopupByClick(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(activePopup);
   }
+}
+
+function createCard(item) {
+  const card = new Card(item, cardTemplate, handleCardClick);
+  const cardElement = card.generateCard();
+
+  return cardElement;
+}
+
+function handleCardClick(name, link) {
+  popupImage.src = link,
+  popupZoomCardCaption.textContent = name
+  openPopup(popupZoomCard)
 }
 
 //opener profile popup
