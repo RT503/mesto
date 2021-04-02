@@ -56,9 +56,8 @@ const userInfo = new UserInfo(userInfoSelectors);
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, cardTemplate, handleCardClick);
-    const cardElement = card.generateCard();
-    cardList.setItem(cardElement);
+    const card = createCard(item);
+    cardList.setItem(card);
   }
 },
   cardsContainerSelector

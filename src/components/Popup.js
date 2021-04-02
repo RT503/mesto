@@ -1,3 +1,5 @@
+import {ESC} from '../utils/constants.js'
+
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -17,7 +19,7 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if(evt.key === 'Escape') {
+    if(evt.key === ESC) {
       this.close();
     }
   }
@@ -30,8 +32,8 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.querySelector('.popup__close').addEventListener('click', () => this.close());
-    this._popup.addEventListener('click', this._handleOverlayClose);
-    window.addEventListener('keydown', this._handleEscClose);
+    this._popup.addEventListener('mousedown', this._handleOverlayClose);
+    //window.addEventListener('keydown', this._handleEscClose);
   }
 
 }
