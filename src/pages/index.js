@@ -1,6 +1,6 @@
 import './index.css';
 
-import Api from '../components/Api';
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import {initialCards} from '../components/initialCards.js';
