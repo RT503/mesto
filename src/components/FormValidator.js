@@ -29,7 +29,7 @@ export default class FormValidator {
     this._toggleButtonState(this._inputList, this._buttonElement);
   }
 
-  _showInputError(inputElement, errorMessage, formElement) {
+  _showInputError(inputElement, errorMessage) {
     const errorElement = document.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -53,7 +53,7 @@ export default class FormValidator {
     }
   };
 
-  _toggleButtonState(inputList, buttonElement) {
+  _toggleButtonState() {
       const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
       const hasNotValidInput = this._inputList.some(findAtLeastOneNotValid);
       if (hasNotValidInput) {
