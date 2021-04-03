@@ -1,5 +1,6 @@
 import './index.css';
 
+import Api from '../components/Api';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import {initialCards} from '../components/initialCards.js';
@@ -7,6 +8,23 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+
+import {
+  cardsContainerSelector,
+  popupZoomCardSelector,
+  popupEditProfileSelector,
+  popupAddCardSelector,
+  editButton,
+  addCardButton,
+  elementsList,
+  cardTemplate,
+  popupEditProfile,
+  profileNameElement,
+  profileInfoElement,
+  popupAddCardElement,
+  nameInputElement,
+  statusInputElement
+} from '../utils/constants.js';
 
 const validateSelectors = {
   formSelector: '.popup__form',
@@ -19,6 +37,12 @@ const validateSelectors = {
 
 }
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  token: '4f9c484d-5393-4899-94d9-a4e16dfc1364'
+});
+
+/*
 //Selectors
 const cardsContainerSelector = '.elements__list';
 const popupZoomCardSelector = '.popup_type_view-image';
@@ -39,6 +63,7 @@ const popupAddCardElement = document.querySelector('.popup_type_add-new-card');
 
 const nameInputElement = document.querySelector('.popup__input_type_name');
 const statusInputElement = document.querySelector('.popup__input_type_status');
+*/
 
 //Validation
 const editProfileFormValidation = new FormValidator (validateSelectors, '.popup__form_type_edit-profile');
