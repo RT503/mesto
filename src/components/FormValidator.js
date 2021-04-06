@@ -12,14 +12,14 @@ export default class FormValidator {
       this._buttonElement = this._formElement.querySelector('.popup__submit-button');
   }
 
-  _setEventListeners(formElement) {
+  _setEventListeners() {
     const handleFormSubmit = (evt) => {
       evt.preventDefault();
     };
-    formElement.addEventListener("submit", handleFormSubmit);
+    this._formElement.addEventListener("submit", handleFormSubmit);
     const inputListIterator = (inputElement) => {
       const handleInput = () => {
-        this._checkInputValidity(this._formElement, inputElement);
+        this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList, this._buttonElement);
       };
 
@@ -43,7 +43,7 @@ export default class FormValidator {
     errorElement.classList.remove(this._errorClass);
   };
 
-  _checkInputValidity(formElement, inputElement) {
+  _checkInputValidity(inputElement) {
     const isInputNotValid = !inputElement.validity.valid;
     if (isInputNotValid) {
       const errorMessage = inputElement.validationMessage;
@@ -79,7 +79,7 @@ export default class FormValidator {
 
 
   enableValidation() {
-    this._setEventListeners(this._formElement);
+    this._setEventListeners();
    };
 }
 
