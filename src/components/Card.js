@@ -59,7 +59,9 @@ export default class Card {
     this._binBtnElement = this._element.querySelector(this._binBtnSelector);
     this._titleElement = this._element.querySelector(this._titleSelector);
     this._likeCountElement = this._element.querySelector(this._likesCountSelector);
-    this._imageElement.src = `url(${this._image})`;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._title;
+    this._titleElement.textContent = this._title;
 
     this.setLikes(this.item)
     this._checkId();
