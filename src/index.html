@@ -16,6 +16,7 @@
         <section class="profile">
           <div class="profile__info">
             <img class="profile__avatar" src="./images/profile-avatar.png" alt="Аватар пользователя">
+            <button class="profile__avatar-button"></button>
             <div class="profile__text-block">
               <div class="profile__row">
                 <h2 class="profile__name">Жак-Ив Кусто</h2>
@@ -70,13 +71,14 @@
           <h3 class="popup__title">Обновить аватар</h3>
           <form class="popup__form popup__form_edit-avatar" name="popup-edit-avatar-form" id="edit-avatar-form" novalidate>
             <input
+              id="avatar"
               type="url"
               class="popup__input popup__input_type_avatar-link"
               name="avatar"
               placeholder="Ссылка на картинку"
               required
-              id="avatar">
-            <span id="avatar-error" class="popup__error"></span>
+              >
+            <span class="popup__input-error avatar-error"></span>
             <button type="submit" class="popup__submit-button">Сохранить</button>
           </form>
         </div>
@@ -107,7 +109,9 @@
         <button type="button" class="card__remove-button"></button>
         <div class="card__bottom-section">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__like-button"></button>
+          <button type="button" class="card__like-button">
+            <p class="card__counter">0</p>
+          </button>
         </div>
       </li>
     </template>

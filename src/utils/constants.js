@@ -1,33 +1,44 @@
 export const ESC = 'Escape';
+const id = {myId: ''};
 
 //Selectors
-const cardsContainerSelector = '.elements__list';
-const popupZoomCardSelector = '.popup_type_view-image';
+//Static page elem selectors
+const buttonEditProfileSelector = '.profile__edit-button';
+const buttonAddNewCardSelector = '.profile__add-button';
+const buttonEditAvatarSelector = '.profile__avatar-button';
+const cardsListSelector = '.elements__list';
+//Popups selectors
 const popupEditProfileSelector = '.popup_type_edit-profile';
 const popupAddCardSelector = '.popup_type_add-new-card';
-const popupConfirmDeleteSelector = '.popup_confirm';
+const popupZoomCardSelector = '.popup_type_view-image';
+const popupAvatarSelector = '.popup_edit-avatar';
 
 //Elements
-const editButton = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-button');
-
-const elementsList = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('.card__template');
-
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const profileNameElement = document.querySelector('.profile__name');
-const profileInfoElement = document.querySelector('.profile__status');
-const popupAddCardElement = document.querySelector('.popup_type_add-new-card');
-
-const nameInputElement = document.querySelector('.popup__input_type_name');
-const statusInputElement = document.querySelector('.popup__input_type_status');
+//Static page elements
+const buttonEditProfileElement = document.querySelector(buttonEditProfileSelector);
+const buttonAddNewCardElement = document.querySelector(buttonAddNewCardSelector);
+const buttonEditAvatarElement = document.querySelector(buttonEditAvatarSelector);
+const cardsListElement = document.querySelector(cardsListSelector);
+const cardTemplateElement = document.querySelector('#card__template');
+//Popup edit profile elements
+const popupEditProfileElement = document.querySelector(popupEditProfileSelector);
+const popupEditProfileNameInputElement = popupEditProfileElement.querySelector('.popup__input_type_name');
+const popupEditProfileAboutInputElement = popupEditProfileElement.querySelector('.popup__input_type_status');
+//Popup add new card elements
+const popupAddCardElement = document.querySelector(popupAddCardSelector);
+const popupAddCardNameInputElement = popupAddCardElement.querySelector('.popup__input_type_name');
+const popupAddCardLinkInputElement = popupAddCardElement.querySelector('.popup__input_type_picture-link');
+//Popup zoom card
+const popupZoomCardElement = document.querySelector(popupZoomCardSelector);
+//Popup avatar
+const popupAvatarElement = document.querySelector(popupAvatarSelector);
 
 
 
 const userInfoSelectors = {
-  nameSelector: '.profile__name',
-  infoSelector: '.profile__status',
-  avatarSelector: '.profile__avatar'
+  nameInputSelector: '.profile__name',
+  infoInputSelector: '.profile__status',
+  userAvatarSelector: '.profile__avatar'
 }
 
 const validateSelectors = {
@@ -40,22 +51,41 @@ const validateSelectors = {
   errorSelector: '.popup__input-error'
 }
 
+ const cardSelectors = {
+  templateSelector: '.card__template',
+  cardSelector: '.card',
+  titleSelector: '.card__title',
+  imageSelector: '.card__image',
+  binBtnSelector: '.card__remove-button',
+  likeBtnSelector: '.card__like-button',
+  likesCountSelector: '.card__counter',
+  likedClass: 'card__like_state_liked'  // need work herreee
+};
+
 export {
-  popupConfirmDeleteSelector,
-  cardsContainerSelector,
-  popupZoomCardSelector,
+  buttonEditProfileSelector,
+  buttonAddNewCardSelector,
+  buttonEditAvatarSelector,
+  cardsListSelector,
   popupEditProfileSelector,
   popupAddCardSelector,
-  editButton,
-  addCardButton,
-  elementsList,
-  cardTemplate,
-  popupEditProfile,
-  profileNameElement,
-  profileInfoElement,
+  popupZoomCardSelector,
+  popupAvatarSelector,
+  buttonEditProfileElement,
+  buttonAddNewCardElement,
+  buttonEditAvatarElement,
+  cardsListElement,
+  cardTemplateElement,
+  popupEditProfileElement,
+  popupEditProfileNameInputElement,
+  popupEditProfileAboutInputElement,
   popupAddCardElement,
-  nameInputElement,
-  statusInputElement,
+  popupAddCardNameInputElement,
+  popupAddCardLinkInputElement,
+  popupZoomCardElement,
+  popupAvatarElement,
   userInfoSelectors,
-  validateSelectors
+  validateSelectors,
+  cardSelectors,
+  id
 }

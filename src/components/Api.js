@@ -2,9 +2,6 @@ export default class Api {
   constructor (config) {
     this._url = config.url;
     this._token = config.authorization;
-
-//    this.deleteCard = this.deleteCard.bind(this);
-//    this.toggleLike = this.toggleLike.bind(this);
   }
 
 
@@ -15,7 +12,8 @@ export default class Api {
     return res.json();
   }
 
-  fetchUserInfo () {
+
+  getUserInfo () {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: {
@@ -25,7 +23,7 @@ export default class Api {
     .then(res => this._checkResponseData(res));
   }
 
-  fetchInitialCards () {
+  getCards () {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: {
@@ -33,6 +31,11 @@ export default class Api {
       }
     })
     .then(res => this._checkResponseData(res));
+  }
+
+  //get all data
+  getAllData() {
+    return Promise.all([this.getUserInfo(), this.getCards()]);
   }
 
   patchUserInfo (values) {
@@ -50,7 +53,7 @@ export default class Api {
     .then(res => this._checkResponseData(res));
   }
 
-  postCard (data) {
+  postCard (cardData) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
@@ -58,15 +61,15 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: data.name,
-        link: data.link
+        name: cardData.name,
+        link: cardData.link
       })
     })
     .then(res => this._checkResponseData(res));
   }
 
-  deleteCard (cardId, isLiked) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+  deleteCard (cardData) {
+    return fetch(`${this._url}/cards/${cardData._id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token
@@ -76,12 +79,22 @@ export default class Api {
 
   }
 
-  toggleLike (cardId, isLiked) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: isLiked ? 'DELETE' : 'PUT',
+  setLike (cardData) {
+    return fetch(`${this._url}/cards/likes/${cardData._id}`, {
+      method: 'PUT',
       headers: {
         authorization: this._token
       }
+    })
+  .then(res => this._checkResponseData(res));
+  }
+
+  removeLike (cardData) {
+    return fetch(`${this._url}/cards/likes/${cardData._id}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: this._token
+    }
     })
     .then(res => this._checkResponseData(res));
   }

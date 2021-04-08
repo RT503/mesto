@@ -2,7 +2,7 @@ import PopupWithForm from './PopupWithForm.js';
 
 export default class PopupConfirm extends PopupWithForm {
   constructor ( { submitFunction }, popupSelector) {
-    super( { submitFunction }, popupSelector);
+    super( { submitFunction }, popupSelector) ;
 
     this._buttonLoadingText = 'Удаление...';
     this.confirmDelete = this.confirmDelete.bind(this);
