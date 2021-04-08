@@ -88,6 +88,7 @@ const popupAddCard = new PopupWithForm({
     api.postCard(formData)
     .then((cardInfo) => {
     const card = createCard(cardInfo);
+
     cardList.prepend(card);
     popupAddCard.close();
     popupAddCard.renderLoading(false);
@@ -155,7 +156,7 @@ popupImg.setEventListeners();
 const confirmDeletePopup = new PopupConfirm({
   submitFunction: (removingCard) => {
     confirmDeletePopup.renderLoading(true);
-    api.deleteCard(removingCard.item)
+    api.deleteCard()
       .then(() => {
         removingCard.removeCard();
         confirmDeletePopup.renderLoading(false);
@@ -178,9 +179,11 @@ const createCard = (cardData) => {
   const card = new Card ( cardData , cardSelectors, id.myId, {
     handleCardClick: handleCardClick,
     handleLikeClick: (cardData) => {
-      const isLiked = card.isLiked() ? api.unlikeCard(cardData) : api.likeCard(cardData);
-      isLiked
+
+      const isLiked = card.isLiked() ? api.removeLike(cardData) : api.setLike(cardData);
+      isLiked(cardData)
       .then((cardData) => {
+        console.log(cardData);
         card.setLikes(cardData);
       })
       .catch((err) => {

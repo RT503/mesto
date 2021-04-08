@@ -60,7 +60,7 @@ const validateSelectors = {
   binBtnSelector: '.card__remove-button',
   likeBtnSelector: '.card__like-button',
   likesCountSelector: '.card__counter',
-  likedClass: 'card__like_state_liked'  // need work herreee
+  likedClass: 'card__like-button_active'
 };
 
 export {

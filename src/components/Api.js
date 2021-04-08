@@ -75,7 +75,7 @@ export default class Api {
         authorization: this._token
       }
     })
-.then(res => this._checkResponseData(res));
+  .then(res => this._checkResponseData(res));
 
   }
 
@@ -88,6 +88,7 @@ export default class Api {
     })
   .then(res => this._checkResponseData(res));
   }
+
 
   removeLike (cardData) {
     return fetch(`${this._url}/cards/likes/${cardData._id}`, {
