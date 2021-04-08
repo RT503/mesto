@@ -135,6 +135,7 @@ const popupAvatar = new PopupWithForm({
       .then(() => {
         userInfo.setAvatar(formData.avatar);
         popupAvatar.renderLoading(false);
+        editAvatarFormValidation.resetValidation();
         popupAvatar.close();
       })
       .catch(err => {
@@ -172,28 +173,38 @@ confirmDeletePopup.setEventListeners();
 
 
         //Functions
-
+        handleRecycleClick
 //Create card
 
 const createCard = (cardData) => {
   const card = new Card ( cardData , cardSelectors, id.myId, {
-    handleCardClick: handleCardClick,
-    handleLikeClick: (cardData) => {
 
-      const isLiked = card.isLiked() ? api.removeLike(cardData) : api.setLike(cardData);
-      isLiked(cardData)
-      .then((cardData) => {
-        console.log(cardData);
-        card.setLikes(cardData);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    handleCardClick: handleCardClick,
+
+    handleLikeClick: (card) => {
+      api.changeLikeCardStatus(card.id(), !card.isLiked())
+        .then(data => {
+          card.setLikesInfo({ ...data });
+        })
+        .catch(err => console.log(`Ошибка изменения статуса лайка: ${err}`))
     },
-    handleRecycleClick: handleRecycleClick
-  });
-  return card.generateCard();
-}
+
+    handleRecycleClick: (card) => {
+      confirmDeletePopup.renderLoading(true);
+        api.removeCard(card.id())
+          .then(() => {
+            card.deleteCard();
+          })
+          .catch(err => console.log(`При удалении карточки: ${err}`))
+          .finally(() => cardInfoSubmit.renderLoading(false));
+      }
+  })
+    return card.generateCard();
+  }
+
+
+
+
 
 function handleCardClick (cardData) {
   popupImg.open(cardData);
