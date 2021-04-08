@@ -22,6 +22,6 @@ export default class PopupConfirm extends PopupWithForm {
   }
 
   confirmDelete () {
-    this._submitHandler(this.cardId);
+    this._submitFunction(this.cardId);
   }
 }

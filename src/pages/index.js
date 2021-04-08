@@ -18,6 +18,7 @@ import {
   popupAddCardSelector,
   popupZoomCardSelector,
   popupAvatarSelector,
+  popupConfirmDeleteSelector,
   buttonEditProfileElement,
   buttonAddNewCardElement,
   buttonEditAvatarElement,
@@ -31,6 +32,7 @@ import {
   popupAddCardLinkInputElement,
   popupZoomCardElement,
   popupAvatarElement,
+  popupConfirmDeleteElement,
   userInfoSelectors,
   validateSelectors,
   cardSelectors,
@@ -63,10 +65,14 @@ const cardList = new Section({
 
 api.getAllData()
 .then((data) => {
+  console.log(data);
   const [userData, cardsData] = data;
   id.myId = userData._id;
+  console.log(userData._id);
   userInfo.setUserInfo(userData);
+  console.log(userData);
   cardList.renderItems(cardsData);
+  console.log(cardsData);
 })
 .catch((err) => {
   console.log(err);
@@ -79,16 +85,20 @@ const popupAddCard = new PopupWithForm({
 
     popupAddCard.renderLoading(true);
 
-    api.postCard(formData)
+    api.postCard(formData);
       //{formData.name, formData.link})
-    .then(() => {
+    .then((res) => {
+    const card = createCard(res);
+    cardList.setItem(card);
+    popupAddCard.close();
+
     popupAddCard.renderLoading(false);
     popupAddCard.close();
     })
     .catch(err => {
       console.log(`Что-то пошло не так: ${err}`);
       popupAddCard.showResponseError(err);
-    });
+    })
   }
   }, popupAddCardSelector);
   popupAddCard.setEventListeners();
@@ -101,13 +111,13 @@ const popupAddCard = new PopupWithForm({
 //Create card
 
 const createCard = (cardData) => {
-  const card = new Card (cardData, cardSelectors, id.myId, {
+  const card = new Card ( cardData , cardSelectors, id.myId, {
     handleCardClick: handleCardClick,
     handleLikeClick: (cardData) => {
       const isLiked = card.isLiked() ? api.unlikeCard(cardData) : api.likeCard(cardData);
       isLiked
       .then((cardData) => {
-        card.setLiles(cardData);
+        card.setLikes(cardData);
       })
       .catch((err) => {
         console.log(err);
@@ -118,11 +128,6 @@ const createCard = (cardData) => {
   return card.generateCard();
 }
 
-/* old
-function handleCardClick(name, link) {
-  popupImg.open(name,link);
-}
-*/
 
 function handleCardClick (cardData) {
   popupImg.open(cardData);
@@ -135,7 +140,7 @@ function handleRecycleClick (cardData) {
 
 function addCardFromForm (cardData) {
   popupAddCard.renderLoading(true);
-  api.addCard(cardData)
+  api.postCard(cardData)
   .then((res) => {
     const card = createCard(res);
     cardList.setItem(card);
@@ -149,6 +154,21 @@ function addCardFromForm (cardData) {
   })
 }
 
+
+function editProfile (userData) {
+  editProfilePopup.renderLoading(true);
+  api.setUserInfo(userData)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    })
+}
 
 //EDIT PROFILE POPUP
 const editProfilePopup = new PopupWithForm({
@@ -198,7 +218,7 @@ const popupAvatar = new PopupWithForm({
 
 
 
-/*
+
 //POPUP CONFIRM DELETE
 
 const confirmDeletePopup = new PopupConfirm(
@@ -217,7 +237,7 @@ const confirmDeletePopup = new PopupConfirm(
       });
   }, popupConfirmDeleteSelector
 );
-*/
+
 
 
 

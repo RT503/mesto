@@ -12,7 +12,7 @@ const popupEditProfileSelector = '.popup_type_edit-profile';
 const popupAddCardSelector = '.popup_type_add-new-card';
 const popupZoomCardSelector = '.popup_type_view-image';
 const popupAvatarSelector = '.popup_edit-avatar';
-
+const popupConfirmDeleteSelector = '.popup_confirm';
 //Elements
 //Static page elements
 const buttonEditProfileElement = document.querySelector(buttonEditProfileSelector);
@@ -32,7 +32,8 @@ const popupAddCardLinkInputElement = popupAddCardElement.querySelector('.popup__
 const popupZoomCardElement = document.querySelector(popupZoomCardSelector);
 //Popup avatar
 const popupAvatarElement = document.querySelector(popupAvatarSelector);
-
+//Popup Confirm delete
+const popupConfirmDeleteElement = document.querySelector(popupConfirmDeleteSelector);
 
 
 const userInfoSelectors = {
@@ -71,6 +72,7 @@ export {
   popupAddCardSelector,
   popupZoomCardSelector,
   popupAvatarSelector,
+  popupConfirmDeleteSelector,
   buttonEditProfileElement,
   buttonAddNewCardElement,
   buttonEditAvatarElement,
@@ -84,6 +86,7 @@ export {
   popupAddCardLinkInputElement,
   popupZoomCardElement,
   popupAvatarElement,
+  popupConfirmDeleteElement,
   userInfoSelectors,
   validateSelectors,
   cardSelectors,
