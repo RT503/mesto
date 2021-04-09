@@ -1,4 +1,3 @@
-export const ESC = 'Escape';
 const id = {myId: ''};
 
 //Selectors

@@ -27,6 +27,5 @@ export default class PopupConfirm extends PopupWithForm {
 
   _submitEvtHandler() {
     this._submit(this._cardData);
-    this._form.removeEventListener('submit', this._submitEvtHandler);
   }
 }

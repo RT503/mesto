@@ -61,9 +61,9 @@ export default class Card {
 
     this._titleElement.textContent = this._title;
     this._imageElement.src = this._image;
+    this._imageElement.alt = this._title;
 
-
-    this.setLikes(this.item)
+    this.setLikes(this.item);
     this._checkId();
     this._setEventListeners();
 
@@ -82,7 +82,7 @@ export default class Card {
 
   setLikes(cardData) {
     this._likeCountElement.textContent = cardData.likes.length;
-    this._isLiked = cardData.likes.filter((item) => {return item._id === this._id}).length > 0;
+    this._isLiked = cardData.likes.some((item) => {return item._id === this._id});
     if (this._isLiked) {
       this._addLikedClass();
     }

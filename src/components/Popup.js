@@ -1,4 +1,4 @@
-import {ESC} from '../utils/constants.js'
+const ESC = 'Escape';
 
 export default class Popup {
   constructor(popupSelector) {

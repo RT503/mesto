@@ -80,7 +80,6 @@ const popupAddCard = new PopupWithForm({
     cardList.prepend(card);
     popupAddCard.close();
     popupAddCard.renderLoading(false);
-    addCardFormValidation.resetValidation();
     })
     .catch(err => {
       console.log(`Что-то пошло не так: ${err}`);
@@ -124,7 +123,6 @@ const popupAvatar = new PopupWithForm({
       .then(() => {
         userInfo.setAvatar(formData.avatar);
         popupAvatar.renderLoading(false);
-        editAvatarFormValidation.resetValidation();
         popupAvatar.close();
       })
       .catch(err => {
@@ -145,6 +143,7 @@ popupImg.setEventListeners();
 
 const confirmDeletePopup = new PopupConfirm({
   submitFunction: (cardToRemove) => {
+    console.log(cardToRemove);
     confirmDeletePopup.renderLoading(true, 'Удаление...');
     api.deleteCard(cardToRemove.item)
       .then(() => {
@@ -204,6 +203,7 @@ editAvatarFormValidation.enableValidation();
 //MAIN LISTENERS
 
   buttonEditAvatarElement.addEventListener('click', function () {
+    editAvatarFormValidation.resetValidation();
     popupAvatar.open();
 })
 
@@ -211,10 +211,11 @@ editAvatarFormValidation.enableValidation();
     evt.preventDefault();
     popupEditProfileNameInputElement.value =  userInfo.getUserInfo().name;
     popupEditProfileAboutInputElement.value = userInfo.getUserInfo().info;
-    editProfilePopup.open();
     editProfileFormValidation.resetValidation();
+    editProfilePopup.open();
 });
 
   buttonAddNewCardElement.addEventListener('click', () => {
+    addCardFormValidation.resetValidation();
     popupAddCard.open();
   })
