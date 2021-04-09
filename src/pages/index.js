@@ -10,9 +10,6 @@ import PopupConfirm from '../components/PopupConfirm.js';
 import UserInfo from '../components/UserInfo.js';
 
 import {
-  buttonEditProfileSelector,
-  buttonAddNewCardSelector,
-  buttonEditAvatarSelector,
   cardsListSelector,
   popupEditProfileSelector,
   popupAddCardSelector,
@@ -22,17 +19,8 @@ import {
   buttonEditProfileElement,
   buttonAddNewCardElement,
   buttonEditAvatarElement,
-  cardsListElement,
-  cardTemplateElement,
-  popupEditProfileElement,
   popupEditProfileNameInputElement,
   popupEditProfileAboutInputElement,
-  popupAddCardElement,
-  popupAddCardNameInputElement,
-  popupAddCardLinkInputElement,
-  popupZoomCardElement,
-  popupAvatarElement,
-  popupConfirmDeleteElement,
   userInfoSelectors,
   validateSelectors,
   cardSelectors,
@@ -92,6 +80,7 @@ const popupAddCard = new PopupWithForm({
     cardList.prepend(card);
     popupAddCard.close();
     popupAddCard.renderLoading(false);
+    addCardFormValidation.resetValidation();
     })
     .catch(err => {
       console.log(`Что-то пошло не так: ${err}`);
@@ -155,56 +144,47 @@ popupImg.setEventListeners();
 //POPUP CONFIRM DELETE
 
 const confirmDeletePopup = new PopupConfirm({
-  submitFunction: (removingCard) => {
-    confirmDeletePopup.renderLoading(true);
-    api.deleteCard()
+  submitFunction: (cardToRemove) => {
+    confirmDeletePopup.renderLoading(true, 'Удаление...');
+    api.deleteCard(cardToRemove.item)
       .then(() => {
-        removingCard.removeCard();
-        confirmDeletePopup.renderLoading(false);
+        cardToRemove.removeCard();
         confirmDeletePopup.close();
       })
-      .catch(err => {
-        console.log(`Что-то пошло не так: ${err}`);
-        confirmDeletePopup.showResponseError(err);
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        confirmDeletePopup.renderLoading(false);
       });
-  }}, popupConfirmDeleteSelector
-)
+    }},   popupConfirmDeleteSelector)
+
 confirmDeletePopup.setEventListeners();
 
 
-        //Functions
-        handleRecycleClick
 //Create card
 
 const createCard = (cardData) => {
-  const card = new Card ( cardData , cardSelectors, id.myId, {
 
-    handleCardClick: handleCardClick,
-
-    handleLikeClick: (card) => {
-      api.changeLikeCardStatus(card.id(), !card.isLiked())
-        .then(data => {
-          card.setLikesInfo({ ...data });
+  const card = new Card(cardData, cardSelectors, id.myId, {
+    handleCardClick,
+    handleLikeClick: (cardData) => {
+      //check is liked card
+      const isLiked = card.isLiked() ? api.unlikeCard(cardData) : api.likeCard(cardData);
+      isLiked
+        .then((cardData) => {
+          card.setLikes(cardData);
         })
-        .catch(err => console.log(`Ошибка изменения статуса лайка: ${err}`))
+        .catch((err) => {
+          //error log
+          console.log(`${err}`);
+        });
     },
-
-    handleRecycleClick: (card) => {
-      confirmDeletePopup.renderLoading(true);
-        api.removeCard(card.id())
-          .then(() => {
-            card.deleteCard();
-          })
-          .catch(err => console.log(`При удалении карточки: ${err}`))
-          .finally(() => cardInfoSubmit.renderLoading(false));
-      }
-  })
+    handleRecycleClick
+    }
+  );
     return card.generateCard();
   }
-
-
-
-
 
 function handleCardClick (cardData) {
   popupImg.open(cardData);
@@ -212,9 +192,8 @@ function handleCardClick (cardData) {
 
 function handleRecycleClick (cardData) {
   confirmDeletePopup.open(cardData);
+
 }
-
-
       //Enable validation
 
 addCardFormValidation.enableValidation();

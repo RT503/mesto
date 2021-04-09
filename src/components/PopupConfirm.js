@@ -1,27 +1,32 @@
 import PopupWithForm from './PopupWithForm.js';
 
 export default class PopupConfirm extends PopupWithForm {
-  constructor ( { submitFunction }, popupSelector) {
-    super( { submitFunction }, popupSelector) ;
+
+
+  constructor({submitFunction}, popupSelector) {
+    super({submitFunction}, popupSelector);
 
     this._buttonLoadingText = 'Удаление...';
-    this.confirmDelete = this.confirmDelete.bind(this);
+    this._form = this._popup.querySelector('.popup__form');
+    this._submit = submitFunction;
   }
 
-  _setEventListeners () {
-    super._setEventListeners();
 
-    this._submitButton('click', this.confirmDelete);
+  setEventListeners() {
+    super.setEventListeners();
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._submitEvtHandler();
+    });
   }
 
-  open(card, cardId) {
+  open(cardData) {
     super.open();
-
-    this.card = card;
-    this.cardId = cardId;
+    this._cardData = cardData;
   }
 
-  confirmDelete () {
-    this._submitFunction(this.cardId);
+  _submitEvtHandler() {
+    this._submit(this._cardData);
+    this._form.removeEventListener('submit', this._submitEvtHandler);
   }
 }
