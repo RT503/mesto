@@ -141,22 +141,7 @@ popupImg.setEventListeners();
 
 //POPUP CONFIRM DELETE
 
-const confirmDeletePopup = new PopupConfirm({
-  submitFunction: (cardToRemove) => {
-    console.log(cardToRemove);
-    confirmDeletePopup.renderLoading(true, 'Удаление...');
-    api.deleteCard(cardToRemove.item)
-      .then(() => {
-        cardToRemove.removeCard();
-        confirmDeletePopup.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        confirmDeletePopup.renderLoading(false);
-      });
-    }},   popupConfirmDeleteSelector)
+const confirmDeletePopup = new PopupConfirm(removeCard, popupConfirmDeleteSelector)
 
 confirmDeletePopup.setEventListeners();
 
@@ -192,6 +177,21 @@ function handleCardClick (cardData) {
 function handleRecycleClick (cardData) {
   confirmDeletePopup.open(cardData);
 
+}
+
+function removeCard (cardToRemove) {
+  confirmDeletePopup.renderLoading(true, 'Удаление...');
+  api.deleteCard(cardToRemove.item)
+    .then(() => {
+      cardToRemove.removeCard();
+      confirmDeletePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupConfirm.renderLoading(false);
+    })
 }
       //Enable validation
 

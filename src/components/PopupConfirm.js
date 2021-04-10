@@ -3,12 +3,13 @@ import PopupWithForm from './PopupWithForm.js';
 export default class PopupConfirm extends PopupWithForm {
 
 
-  constructor({submitFunction}, popupSelector) {
-    super({submitFunction}, popupSelector);
+  constructor( popupSelector) {
 
-    this._buttonLoadingText = 'Удаление...';
+
+    //this._buttonLoadingText = 'Удаление...';
+    this._popup = document.querySelector(popupSelector);
     this._form = this._popup.querySelector('.popup__form');
-    this._submit = submitFunction;
+
   }
 
 
@@ -23,9 +24,14 @@ export default class PopupConfirm extends PopupWithForm {
   open(cardData) {
     super.open();
     this._cardData = cardData;
+
   }
 
   _submitEvtHandler() {
-    this._submit(this._cardData);
+    removeCard(this._cardData);
+
   }
+
+
+
 }
