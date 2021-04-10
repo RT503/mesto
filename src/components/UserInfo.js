@@ -18,7 +18,7 @@ export default class UserInfo{
     this.infoElement.textContent = formData.about;
 
     if(formData.avatar) {
-      this.setAvatar(formData.avatar);
+      this.userAvatarElement.src = formData.avatar;
     }
   }
 

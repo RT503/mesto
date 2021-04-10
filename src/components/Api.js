@@ -20,7 +20,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   getCards () {
@@ -30,7 +30,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   //get all data
@@ -50,7 +50,7 @@ export default class Api {
         about: values.status
       })
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   postCard (cardData) {
@@ -65,7 +65,7 @@ export default class Api {
         link: cardData.link
       })
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   deleteCard (cardData) {
@@ -75,7 +75,7 @@ export default class Api {
         authorization: this._token
       }
     })
-  .then(this._checkResponseData);
+  .then(res => this._checkResponseData(res));
 
   }
 
@@ -86,7 +86,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   unlikeCard(cardData) {
@@ -96,7 +96,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 
   updateAvatar (link) {
@@ -110,6 +110,6 @@ export default class Api {
         avatar: link
       })
     })
-    .then(this._checkResponseData);
+    .then(res => this._checkResponseData(res));
   }
 }

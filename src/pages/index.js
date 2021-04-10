@@ -80,6 +80,7 @@ const popupAddCard = new PopupWithForm({
     cardList.prepend(card);
     popupAddCard.close();
     popupAddCard.renderLoading(false);
+    addCardFormValidation.resetValidation();
     })
     .catch(err => {
       console.log(`Что-то пошло не так: ${err}`);
@@ -123,6 +124,7 @@ const popupAvatar = new PopupWithForm({
       .then(() => {
         userInfo.setAvatar(formData.avatar);
         popupAvatar.renderLoading(false);
+        editAvatarFormValidation.resetValidation();
         popupAvatar.close();
       })
       .catch(err => {
@@ -141,7 +143,25 @@ popupImg.setEventListeners();
 
 //POPUP CONFIRM DELETE
 
+<<<<<<< HEAD
 const confirmDeletePopup = new PopupConfirm(removeCard, popupConfirmDeleteSelector)
+=======
+const confirmDeletePopup = new PopupConfirm({
+  submitFunction: (cardToRemove) => {
+    confirmDeletePopup.renderLoading(true, 'Удаление...');
+    api.deleteCard(cardToRemove.item)
+      .then(() => {
+        cardToRemove.removeCard();
+        confirmDeletePopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        confirmDeletePopup.renderLoading(false);
+      });
+    }},   popupConfirmDeleteSelector)
+>>>>>>> parent of f884069 (1 reviev)
 
 confirmDeletePopup.setEventListeners();
 
@@ -203,7 +223,6 @@ editAvatarFormValidation.enableValidation();
 //MAIN LISTENERS
 
   buttonEditAvatarElement.addEventListener('click', function () {
-    editAvatarFormValidation.resetValidation();
     popupAvatar.open();
 })
 
@@ -211,11 +230,10 @@ editAvatarFormValidation.enableValidation();
     evt.preventDefault();
     popupEditProfileNameInputElement.value =  userInfo.getUserInfo().name;
     popupEditProfileAboutInputElement.value = userInfo.getUserInfo().info;
-    editProfileFormValidation.resetValidation();
     editProfilePopup.open();
+    editProfileFormValidation.resetValidation();
 });
 
   buttonAddNewCardElement.addEventListener('click', () => {
-    addCardFormValidation.resetValidation();
     popupAddCard.open();
   })
