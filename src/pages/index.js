@@ -143,7 +143,6 @@ popupImg.setEventListeners();
 
 const confirmDeletePopup = new PopupConfirm({
   submitFunction: (cardToRemove) => {
-    console.log(cardToRemove);
     confirmDeletePopup.renderLoading(true, 'Удаление...');
     api.deleteCard(cardToRemove.item)
       .then(() => {
