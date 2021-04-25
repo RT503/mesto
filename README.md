@@ -17,7 +17,7 @@ Mesto - проектная работа с использованием JavaScri
 Взаимодействие с API.
 
 
-### В данном проекте были использованы
+### Used technoloques & technics:
 
 * Html
 * Css
